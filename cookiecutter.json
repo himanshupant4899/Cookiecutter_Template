@@ -1,0 +1,9 @@
+{
+    "git_repo_name": "terraform-repository",
+    "author_name": "Himanshu",
+    "description": "Terraform repository to provision infrastructure",
+    "provider": "aws",
+    "aws_provider_version": "~> 6.0",
+    "aws_region": "ap-south-2",
+    "tf_enable_remote_reference": ["true", "false"]
+}

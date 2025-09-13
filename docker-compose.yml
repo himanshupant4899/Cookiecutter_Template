@@ -1,0 +1,8 @@
+name: cookiecutter_template
+
+services:
+  cookiecutter:
+    image: depop/cookiecutter
+    volumes:
+    - .:/tmp/output
+    working_dir: /tmp/output
