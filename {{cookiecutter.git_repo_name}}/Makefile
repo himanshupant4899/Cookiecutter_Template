@@ -1,12 +1,13 @@
-TARGET_DIR ?= $(CURDIR)
+WORKSPACE ?= $(CURDIR)
+
+DOCKER_WORK_DIR=/opt/app/vscode/workspace
 
 DOCKER_COMPOSE := docker compose -f docker-compose.yml
 
-DOCKER_COMPOSE_RUN = $(DOCKER_COMPOSE) run --rm -v "$(TARGET_DIR):/tmp/output" tooling
+DOCKER_COMPOSE_GENERIC = $(DOCKER_COMPOSE) run --rm -v "$(WORKSPACE):$(DOCKER_WORK_DIR)" -w "$(DOCKER_WORK_DIR)" --entrypoint sh tooling
 
-versions:
-	$(DOCKER_COMPOSE_RUN) sh -c '\
-		echo "Terraform: \"$$(terraform version | head -n1)"\"; \
-		echo "Docker: $$(docker version --format \"{{.Client.Version}}\")"; \
-		echo "Make: \"$$(make --version | head -n1)"\"'
-.PHONY: versions
+# Passes the .env file to the container 
+DOCKER_COMPOSE_TOOLING = $(DOCKER_COMPOSE) -f docker-compose.tooling.yml run --rm -v "$(WORKSPACE):$(DOCKER_WORK_DIR)" -w "$(DOCKER_WORK_DIR)" tooling
+
+include build/*.mk
+
