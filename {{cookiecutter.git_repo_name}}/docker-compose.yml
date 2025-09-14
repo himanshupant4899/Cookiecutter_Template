@@ -1,0 +1,9 @@
+name: tooling
+
+services:
+  tooling:
+    build: .
+    volumes:
+    - .:/tmp/output
+    - /var/run/docker.sock:/var/run/docker.sock
+    working_dir: /tmp/output
