@@ -1,9 +1,11 @@
+TERRAFORM_BIN=terraform -chdir=terraform
+
 terraform_init: dotenv
 	$(DOCKER_COMPOSE_TOOLING) make _terraform_init
 .PHONY: terraform_init
 
 _terraform_init:
-	terraform init
+	$(TERRAFORM_BIN) init
 .PHONY: _terraform_init
 
 terraform_validate:
@@ -11,7 +13,7 @@ terraform_validate:
 .PHONY: terraform_validate
 
 _terraform_validate:
-	terraform validate
+	$(TERRAFORM_BIN) validate
 .PHONY: _terraform_validate
 
 terraform_plan: dotenv
@@ -19,7 +21,7 @@ terraform_plan: dotenv
 .PHONY: terraform_plan
 
 _terraform_plan:
-	terraform plan
+	$(TERRAFORM_BIN) plan
 .PHONY: _terraform_plan
 
 terraform_apply: dotenv
@@ -27,7 +29,7 @@ terraform_apply: dotenv
 .PHONY: terraform_apply
 
 _terraform_apply:
-	terraform apply
+	$(TERRAFORM_BIN) apply
 .PHONY: _terraform_apply
 
 terraform_reconfigure:
@@ -35,7 +37,7 @@ terraform_reconfigure:
 .PHONY: terraform_reconfigure
 
 _terraform_reconfigure:
-	terraform reconfigure
+	$(TERRAFORM_BIN) reconfigure
 .PHONY: _terraform_reconfigure
 
 terraform_migrate_state: dotenv
@@ -43,7 +45,7 @@ terraform_migrate_state: dotenv
 .PHONY: terraform_migrate_state
 
 _terraform_migrate_state:
-	terraform init migrate state
+	$(TERRAFORM_BIN) init migrate state
 .PHONY: _terraform_migrate_state
 
 terraform_version:
@@ -51,5 +53,5 @@ terraform_version:
 .PHONY: terraform_version
 
 _terraform_version:
-	terraform --version
+	$(TERRAFORM_BIN) --version
 .PHONY: _terraform_version
