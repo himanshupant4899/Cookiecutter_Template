@@ -3,6 +3,7 @@
     "author_name": "Himanshu",
     "description": "Terraform repository to provision infrastructure",
     "provider": "aws",
+    "azure_provider_version": "=3.0.0",
     "aws_provider_version": "~> 6.0",
     "aws_region": "ap-south-2",
     "tf_enable_remote_reference": ["true", "false"]
