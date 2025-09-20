@@ -1,7 +1,7 @@
 variable "aws_region" {
     description = "AWS region to create resources in"
     type = string
-    value = "{{cookiecutter.aws_region}}"
+    default = "{{cookiecutter.aws_region}}"
 }
 
 {% if cookiecutter.tf_enable_remote_reference == "true" %}
